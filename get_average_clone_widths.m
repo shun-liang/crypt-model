@@ -1,6 +1,8 @@
 % Calculate the average clone widths for all simulation time stemps
 function average_clone_widths = get_average_clone_widths(filtered_clone_widths, time_length, ...
     crypt_num)
+% average_clone_widths(t + 1) is the average clone width of all crypts at time t, without
+% considering the fully-cloned crypts or the crypts have no remaining marked cell.
 average_clone_widths = zeros(1, time_length + 1);
 for t = 0:time_length
     filtered_clone_widths_t = filtered_clone_widths(:, t + 1);

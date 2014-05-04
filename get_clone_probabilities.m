@@ -1,6 +1,8 @@
 % Calculate the probability of the clone width value of each crypt for all simulation time steps.
 function clone_probabilities = get_clone_probabilities(filtered_clone_widths, time_length, ...
     crypt_num)
+% clone_probabilities(c, t + 1) is the probabilitiy of the clone width of crypt c, in all 
+% possible clone width values at time t, except 0 and full clone
 clone_probabilities = repmat(NaN, crypt_num, time_length + 1);
 for t = 0:time_length
     filtered_clone_widths_t = filtered_clone_widths(:, t + 1);

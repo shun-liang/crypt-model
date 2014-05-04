@@ -7,3 +7,6 @@ function plot_distributions(distributions, time_length, crypt_cells)
 figure
 plot(0:time_length, distributions); 
 l = legend(strsplit(num2str(0:crypt_cells)));
+title('Clone width distributions over time');
+ylabel('Number of crypts');
+xlabel('Time step');

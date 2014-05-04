@@ -16,3 +16,6 @@ for t = scaling_start:scaling_end
 end
 m = legend(strsplit(num2str(scaling_start:scaling_end)));
 axis([0, 4, 0, 1.5]);
+title('Scaled distributions over time')
+ylabel('Width probability * average clone width');
+xlabel('clone width / average clone width');
