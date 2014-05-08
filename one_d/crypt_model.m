@@ -2,7 +2,7 @@
 crypt_num = 100; % number of crypts in the simulation
 n = 12; % number of cells in each crypt
 lambda = 1; % stem cell replacement rate
-time_length = 20; % total simulation time length
+time_length = 100; % total simulation time length
 t_all_marked = repmat(NaN, 1, crypt_num); % t_all_marked(c) is the time step when crypt c is fully 
                                     % occupied by marked clone
 t_all_zeroed = repmat(NaN, 1, crypt_num); % t_all_zeored(c) is the time step when the marked clone
