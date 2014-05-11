@@ -1,8 +1,8 @@
 % One-dimensional crypt stem cell dynamics simulation
-crypt_num = 100; % number of crypts in the simulation
-n = 12; % number of cells in each crypt
+crypt_num = 500; % number of crypts in the simulation
+n = 6; % number of cells in each crypt
 lambda = 1; % stem cell replacement rate
-time_length = 100; % total simulation time length
+time_length = 200; % total simulation time length
 t_all_marked = repmat(NaN, 1, crypt_num); % t_all_marked(c) is the time step when crypt c is fully 
                                     % occupied by marked clone
 t_all_zeroed = repmat(NaN, 1, crypt_num); % t_all_zeored(c) is the time step when the marked clone
@@ -62,7 +62,7 @@ distributions = get_distributions(marked_cells, time_length, n, crypt_num);
 % Plot the clone width distributions over time.
 plot_distributions(distributions, time_length, n)
 
-filtered_clone_widths = get_filtered_clone_widths(marked_cells, time_length, crypt_num);
+filtered_clone_widths = get_filtered_clone_widths(marked_cells, time_length, crypt_num, n);
 % filtered_clone_widths(c, t + 1) is the clone widths of crypt c at time t, but crypts that are
 % fully marked or has not remaining marked cell will be filtered as NaN.
 filtered_clone_widths
@@ -81,3 +81,5 @@ scaling_start = 10;
 scaling_end = 20;
 plot_scaled_distributions(filtered_clone_widths, clone_probabilities,...
     average_clone_widths, scaling_start, scaling_end);
+
+plotratiosv2(marked_cells, n)
