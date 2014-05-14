@@ -1,8 +1,8 @@
-% Two D stem cell model with periodic boundary conditions
+% Two D stem cell model with halo boundary conditions
 crypt_num = 100;
-n = 6;
+n = 4;
 lambda = 1;
-time_length = 100;
+time_length = 1000;
 t_all_marked = zeros(1, crypt_num);
 t_all_zeroed = zeros(1, crypt_num);
 state_fixed = false(1, crypt_num);
@@ -13,9 +13,13 @@ marked_cells = zeros(crypt_num, time_length + 1); % marked_cells(c, t + 1) is th
                                                   % cells in the marked clone in crypt c at
                                                   % time step t
 cells = zeros(n, n, crypt_num);
+
 for c=1:crypt_num
     cells(n/2, n/2, c) = 1;
 end
+
+all_influence_values = generate_influence_values_halo(n, n, crypt_num);
+
 %cells
 % marked_cells(:, 0 + 1) is a vector of the marked clone width of each crypt at the initial state
 for c = 1:crypt_num
@@ -27,7 +31,7 @@ for c = 1:crypt_num
     for t = 1:time_length
         i = unidrnd(n);
         j = unidrnd(n);
-        new_state = cell_update_periodic(cells(:, : ,c), i, j, n, n, lambda);
+        new_state = cell_update_halo(cells(:, : ,c), all_influence_values(:, :, c), i, j, n, n, lambda);
         marked_cells = update_marked_cells_two_d(marked_cells, cells, t, new_state, c, i, j);
         cells(i, j, c) = new_state;
         if isequal(cells(:, :, c), ones(n, n)) && (~state_fixed(c))
